@@ -23,7 +23,7 @@ int main()
 	Game game(&sdl, 32);
 
 	//algorithm
-	static Genetic genetic(50);
+	static Genetic genetic(100);
 	std::thread thr1(&Genetic::run, &genetic, game);//algorithm is in another thread so that input can be handled in main thread
 	
 	//drawing thread

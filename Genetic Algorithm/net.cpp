@@ -116,9 +116,15 @@ Net Net::cross(Net b)
 void Net::drawNet(SDLWrapper &sdl, const SDL_Rect dstRect)
 {
 	const int segments = std::size(neurons);
+	auto vertSegments = 0;
+	for(auto i : neurons)
+	{
+		if (std::size(i) > vertSegments)
+			vertSegments = std::size(i);
+	}
 	const auto spacing = dstRect.w / segments;
 
-	const int size = spacing / 2;
+	const int size = spacing < dstRect.h / vertSegments ? spacing / 2 : dstRect.h / vertSegments / 2;//0
 	
 	std::vector<std::vector<SDL_Rect>> rects;
 	std::vector<std::vector<double>> nums;
@@ -130,10 +136,10 @@ void Net::drawNet(SDLWrapper &sdl, const SDL_Rect dstRect)
 	{
 		rects.emplace_back();
 		nums.emplace_back();
-		int x = (i + 2) * spacing;
+		int x = dstRect.x + i * spacing + spacing / 2;
 		for (auto j = 0; j < std::size(neurons[i]); j++)
 		{
-			int y = dstRect.h / (std::size(neurons[i]) + 1) * (j + 1);
+			int y = dstRect.y + dstRect.h / (std::size(neurons[i]) + 1) * (j + 1);
 			rects[i + 1].push_back({x - size/2, y - size/2, size, size});
 			nums[i + 1].push_back(neurons[i][j]);
 		}

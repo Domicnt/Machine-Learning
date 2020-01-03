@@ -132,7 +132,7 @@ std::thread Game::thread(Net& net, int amount)
 
 void Game::draw(Net net)
 {
-	SDL_Rect dstrect = { 0, 0, W / 2, H / 3 };
+	SDL_Rect dstrect = { W / 4, 0, W / 2, H / 3 };
 	net.drawNet(*sdl, dstrect);
 	
 	SDL_RenderDrawRect(sdl->renderer, &player);
