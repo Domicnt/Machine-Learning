@@ -2,7 +2,7 @@
 
 Genetic::Genetic(int MaxGen)
 {
-	nets = 250;
+	nets = 100;
 	for (auto i = 0; i < nets; i++)
 	{
 		population.push_back({ {2, 1} });
@@ -16,19 +16,12 @@ void Genetic::run(Game game)
 	for (gen = 0;  gen < maxGen; gen++) {
 		printf("generation %d\n", gen + 1);
 
-		if(gen==0)
+		for (auto j = 0; j < nets; j++)
 		{
-			for (auto j = 0; j < nets; j++)
-			{
+			if (gen == 0) 
 				threads.push_back(game.thread(population[j], 100));
-			}
-		}
-		else
-		{
-			for (auto j = 0; j < nets; j++)
-			{
+			else 
 				threads[j] = game.thread(population[j], 100);
-			}
 		}
 		for (auto j = 0; j < nets; j++)
 		{

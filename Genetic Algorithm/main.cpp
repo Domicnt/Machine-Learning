@@ -22,12 +22,16 @@ int main()
 	//set up game
 	Game game(&sdl, 32);
 
-	//algorithm
+	//set up algorithm
 	static Genetic genetic(100);
-	std::thread thr1(&Genetic::run, &genetic, game);//algorithm is in another thread so that input can be handled in main thread
 	
 	//drawing thread
 	std::thread thr2(show, &genetic.best, std::ref(game));//make lambda function
+	
+	//std::string f; scanf_s("%s", f); //just so that you can control when the algorithm starts
+
+	//algorithm thread
+	std::thread thr1(&Genetic::run, &genetic, game);//algorithm is in another thread so that input can be handled in main thread
 	
 	//handle sdl in main thread bc it doesn't like multithreading
 	while (!sdl.quit)
