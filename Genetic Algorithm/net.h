@@ -19,7 +19,6 @@ public:
 	Net(std::vector<int> Amount);
 
 	double sigmoid(double x);
-	double sigmoidnt(double x);
 
 	void calculate();
 

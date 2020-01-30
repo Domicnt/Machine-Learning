@@ -24,6 +24,4 @@ public:
 	
 	void renderSurface(SDL_Surface* surface, const SDL_Rect dstrect);
 	void draw();
-
-	
 };

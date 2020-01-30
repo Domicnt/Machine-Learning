@@ -37,21 +37,6 @@ double Net::sigmoid(const double x)
 	return 1. / (1 + pow(e, -x));
 }
 
-double Net::sigmoidnt(double x)
-{
-	int n = 1000;
-	double sum = 0;
-	for (int i = 1; i <= n; i++)
-		sum += sin((M_PI * i * x) / (4 * n)) / i;
-	return .5 + sum / M_PI;
-}
-
-
-double dotProd(std::vector<double> a, std::vector<double> b)
-{
-	return std::inner_product(std::begin(a), std::end(a), std::begin(b), 0.);//0. to make it a double
-}
-
 void Net::calculate()
 {
 	for (unsigned int i = 1; i < std::size(neurons); i++)
